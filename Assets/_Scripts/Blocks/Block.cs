@@ -5,6 +5,8 @@ namespace InaneGames {
 
 	public class Block : MonoBehaviour 
 	{
+		public EnemyType Type = EnemyType.NORMAL;
+
 		//the score gotten for each block destroyed, will be multipled by the number of hits.
 		public int bounty = 5;
 		

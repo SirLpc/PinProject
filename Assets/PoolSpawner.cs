@@ -26,6 +26,12 @@ public class PoolSpawner : MonoBehaviour
 		spawnPool.Despawn (target, delay);
 	}
 
+	public Transform SpawnEnemy(EnemyType type)
+	{
+		return spawnPool.Spawn ("Enemy_Normal");
+	}
+
+
 	void Update()
 	{
 		if (Input.GetKeyDown (KeyCode.P))

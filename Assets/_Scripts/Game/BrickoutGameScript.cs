@@ -179,6 +179,7 @@ namespace InaneGames {
 		//preform the countdown
 		IEnumerator waitForBall()
 		{
+
 			Ball[] balls = (Ball[])GameObject.FindObjectsOfType(typeof(Ball));
 			if(balls.Length==0)
 			{
