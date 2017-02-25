@@ -8,7 +8,7 @@ namespace InaneGames {
 		private AudioSource m_audioSource;
 		void Start()
 		{
-			m_paddle = gameObject.transform.parent.GetComponent<Paddle>();
+			m_paddle = gameObject.transform.GetComponentInParent<Paddle>();
 			m_audioSource = gameObject.GetComponent<AudioSource>();
 		}
 
