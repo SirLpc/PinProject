@@ -3,10 +3,19 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using InaneGames;
 
+
 public class ChapterDataSaver : MonoBehaviour
 {
 
 	private int cid;
+	private string cpath;
+
+	void Awake()
+	{
+		cid = SceneManager.GetActiveScene().buildIndex;
+
+		cpath = Application.dataPath+"/Resources/ChapterData.bytes?tag=" + cid;
+	}
 
 	void OnGUI ()
 	{
@@ -39,14 +48,14 @@ public class ChapterDataSaver : MonoBehaviour
 			cm.EnemyType.Add ((int)item.Type);
 		}
 
-		ES2.Save (cm, Consts.ChapterDataPath + cm.ChapterID);
+		Debug.Log ("save success" + cpath);
+		ES2.Save (cm, cpath);
 
-		Debug.Log ("save success" + cid);
 	}
 
 	private void ReadData()
 	{
-		var dd = ES2.Load<ChapterModel> (Consts.ChapterDataPath + cid);
+		var dd = ES2.Load<ChapterModel> (cpath);
 		Debug.Log (dd.ChapterID);
 		foreach (var item in dd.EnemyLocPositin) {
 			Debug.Log (item);

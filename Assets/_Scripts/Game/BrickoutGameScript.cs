@@ -184,6 +184,7 @@ namespace InaneGames {
 			if(balls.Length==0)
 			{
 				GameObject go = (GameObject)Instantiate(ballPrefab,ballStartPos,Quaternion.identity);
+				go.transform.localEulerAngles = Consts.PlayerDefalutRot;
 				if(go)
 				{
 					Ball ball = go.GetComponent<Ball>();

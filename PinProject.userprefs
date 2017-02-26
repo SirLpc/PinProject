@@ -1,22 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_Scripts\Game\BrickoutGameScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ChapterDataReader.cs">
     <Files>
-      <File FileName="Assets\ChapterDataReader.cs" Line="70" Column="32" />
-      <File FileName="Assets\ChapterDataSaver.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Scripts\Model\ChapterModel.cs" Line="4" Column="26" />
-      <File FileName="Assets\_Scripts\Brickout\StackRotator.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Scripts\Brickout\PaddleReflector.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Scripts\Brickout\Paddle.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Scripts\GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Scripts\Brickout\Ball.cs" Line="133" Column="17" />
-      <File FileName="Assets\_Scripts\Game\BrickoutGameScript.cs" Line="177" Column="19" />
-      <File FileName="Assets\PoolSpawner.cs" Line="31" Column="41" />
+      <File FileName="Assets\Easy Save 2\readme.txt" Line="32" Column="1" />
+      <File FileName="Assets\ChapterDataReader.cs" Line="54" Column="24" />
+      <File FileName="Assets\ChapterDataSaver.cs" Line="53" Column="1" />
+      <File FileName="Assets\_Scripts\Consts.cs" Line="6" Column="60" />
+      <File FileName="Assets\_Scripts\Game\BrickoutGameScript.cs" Line="186" Column="88" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="F:\_MyGames\Programs\PinProject\Assets\_Scripts\Game\BrickoutGameScript.cs" line="177" column="19" />
       <Breakpoint file="F:\_MyGames\Programs\PinProject\Assets\_Scripts\Game\BrickoutGameScript.cs" line="145" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
