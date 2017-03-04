@@ -51,7 +51,8 @@ namespace InaneGames {
 		}
 		public void delete()
 		{
-			Destroy(gameObject,0.1f);
+			Destroy(gameObject);
+			//Destroy(gameObject,0.1f);
 		}
 
 		public void reflect(Vector3 vec)
@@ -108,18 +109,27 @@ namespace InaneGames {
 
 		void OnCollisionEnter(Collision col)
 		{
+//			foreach (ContactPoint contact in col.contacts) {
+//				print(contact.thisCollider.name + " hit " + contact.otherCollider.name);
+//				Debug.DrawRay(contact.point, contact.normal, Color.white);
+//			}
 			Block block = col.gameObject.GetComponent<Block>();
 			if(block)
 			{
+				if (block.Type == EnemyType.KNIFE 
+					&& col.contacts[0].otherCollider.CompareTag(Consts.TrapTag))
+				{
+					BrickoutGameScript.Instance.killABall (this);
+					return;
+				}
 				handleBlock(block,col.contacts[0].point);
 			}
 		
-			Paddle paddle = col.gameObject.GetComponent<Paddle>();
-			if(paddle==null && col.transform && col.transform.parent)
-			{
-				paddle = col.transform.parent.GetComponent<Paddle>();
-			}
-	
+//			Paddle paddle = col.gameObject.GetComponent<Paddle>();
+//			if(paddle==null && col.transform && col.transform.parent)
+//			{
+//				paddle = col.transform.parent.GetComponent<Paddle>();
+//			}
 		}
 		
 		void onBallHitPaddle(Paddle p, Ball b)

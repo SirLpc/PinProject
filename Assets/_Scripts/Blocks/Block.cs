@@ -55,16 +55,22 @@ namespace InaneGames {
 		/// </summary>
 		public float damage = 5;
 
-		//the gamescript
-		protected BrickoutGameScript m_gameScript;
-
 		//the object on death
 		public GameObject objectOnDeath;
 
 		//the invincible.
 		protected bool m_invincible = false;
 
-		
+		public void OnEnable()
+		{
+			m_nomHits = nomHits;
+			m_destroyed = false;
+			//infroms the gamescript that a block is created
+			var bgs = BrickoutGameScript.Instance;
+			if (bgs)
+				bgs.addBlock (this);
+		}
+
 		public virtual void Start()
 		{
 			//set the number hits
@@ -73,13 +79,8 @@ namespace InaneGames {
 				laserScalar=0;
 				gameObject.AddComponent<Magnet>();
 			}
-
-			m_nomHits = nomHits;
-			m_gameScript = BrickoutGameScript.Instance;
-
-			//infroms the gamescript that a block is created
-			m_gameScript.addBlock(this);
 		}
+
 		public void setInvincible(bool inv)
 		{
 			m_invincible=inv;
@@ -109,9 +110,8 @@ namespace InaneGames {
 			m_nomHits-= (timesToDamage * damageScalar);
 			if(createEffect || m_nomHits <=0)
 			{
-				m_gameScript.onHitBlock();
-				
-				
+				BrickoutGameScript.Instance.onHitBlock();
+
 				if(damageScalar>0)
 				{
 					//create an object 
@@ -187,18 +187,18 @@ namespace InaneGames {
 				}
 				
 				//add our score
-				m_gameScript.addScore( bounty,false );
+				BrickoutGameScript.Instance.addScore( bounty,false );
 
 				BaseGameManager.destroyBlock(this);
 
 					//inform the gamescript that the block has been removed
-				m_gameScript.removeBlock(this);
+				BrickoutGameScript.Instance.removeBlock(this);
 	
 				//set the block to destroyed
 				m_destroyed=true;
-				for(int i=0; i<transform.childCount; i++){
-					transform.GetChild(i).transform.parent=transform.parent;
-				}
+//				for(int i=0; i<transform.childCount; i++){
+//					transform.GetChild(i).transform.parent=transform.parent;
+//				}
 			
 				//actually remove the gameObject
 				//Destroy(gameObject);

@@ -37,7 +37,7 @@ public class ChapterDataReader : MonoBehaviour
 	{
 		//int myInt = ES2.Load<int>("myFile.bytes?tag=myInt&savelocation=resources");
 		var dd = ES2.Load<ChapterModel> ("ChapterData.bytes?tag=" + cid + "&savelocation=resources");
-		Debug.Log (dd.ChapterID);
+		//Debug.Log (dd.ChapterID);
 		for (int i = 0; i < dd.EnemyLocPositin.Count; i++)
 		{
 			var tr = PoolSpawner.Instance.SpawnEnemy ((EnemyType)dd.EnemyType [i]);
@@ -54,7 +54,7 @@ public class ChapterDataReader : MonoBehaviour
 			//tr.localEulerAngles = dd.EnemyLocRotationEuler [i];
 			//tr.localScale = dd.EnemyLocScale [i];
 			tr.name = "bbb" + i;
-			Debug.Log (tr.localPosition + "        " + i);
+			//Debug.Log (tr.localPosition + "        " + i);
 		}
 
 	}

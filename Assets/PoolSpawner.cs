@@ -7,12 +7,14 @@ public class PoolSpawner : MonoBehaviour
 	public static PoolSpawner Instance = null;
 
 	private SpawnPool spawnPool;
+	private Transform _tr;
 
 	private void Awake()
 	{
 		Instance = this;
 		Object.DontDestroyOnLoad(this.gameObject);
 
+		_tr = transform;
 		spawnPool = GetComponent<SpawnPool> ();
 	}
 
@@ -23,6 +25,7 @@ public class PoolSpawner : MonoBehaviour
 
 	public void Despawn(Transform target, float delay)
 	{
+		target.SetParent (_tr);
 		spawnPool.Despawn (target, delay);
 	}
 
@@ -36,7 +39,6 @@ public class PoolSpawner : MonoBehaviour
 			return spawnPool.Spawn ("Enemy_Knife");
 		case EnemyType.BOOM:
 			return spawnPool.Spawn ("Enemy_Normal");
-			break;
 		default :
 			return spawnPool.Spawn ("Enemy_Normal");
 		}
@@ -44,10 +46,5 @@ public class PoolSpawner : MonoBehaviour
 	}
 
 
-	void Update()
-	{
-		if (Input.GetKeyDown (KeyCode.P))
-			SpawnExplosion (Vector3.zero, Quaternion.identity);
-	}
 
 }

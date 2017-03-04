@@ -32,19 +32,8 @@ namespace InaneGames {
 			//a ball has gone out of bounds infrom the gamescript.
 			if(ball)	
 			{
-				//delete our ball
-				ball.delete();
-
-				//create a new ball
-				BrickoutGameScript brickoutGameScript = BrickoutGameScript.Instance;
-				if(brickoutGameScript)
-				{
-					brickoutGameScript.newBall(true);
-				}
-				GameManager.ballOutOfBounds();
+				BrickoutGameScript.Instance.killABall (ball);
 			}
-
-
 		}
 	}
 }

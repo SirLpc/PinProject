@@ -136,6 +136,9 @@ namespace InaneGames {
 		}	
 		public void onHitBlock()
 		{
+			if (m_stackRotator == null)
+				return;
+			
 			m_stackRotator.SendMessage("onHitBlock");
 			if(GetComponent<AudioSource>())
 			{
@@ -143,7 +146,6 @@ namespace InaneGames {
 				GetComponent<AudioSource>().Play();
 			}
 		}	
-
 
 		public void newBall(bool lossBall=false)
 		{
@@ -169,6 +171,17 @@ namespace InaneGames {
 					GameManager.gameOver(false);
 				}
 			}
+		}
+
+		public void killABall(Ball ball)
+		{
+			//delete our ball
+			ball.delete();
+
+			//create a new ball
+			newBall(true);
+
+			GameManager.ballOutOfBounds();
 		}
 		
 		public IEnumerator shakeAndBake()
