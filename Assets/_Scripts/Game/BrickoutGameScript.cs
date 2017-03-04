@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
 namespace InaneGames {
 
 	public class BrickoutGameScript : MonoBehaviour
@@ -40,6 +42,7 @@ namespace InaneGames {
 		private int m_extraLifeCost = 500;
 		private bool m_gameOver=false;
 
+		private List<Block> _blockList = new List<Block>();
 
 		public GameObject stackRotatorGO;
 		private GameObject m_stackRotator;
@@ -66,6 +69,7 @@ namespace InaneGames {
 		{
 			Instance = null;
 		}
+
 		void onGameOver(bool vic)
 		{
 			m_gameOver=true;
@@ -125,9 +129,10 @@ namespace InaneGames {
 			createNextStack();
 		}
 
-		public void addBlock()
+		public void addBlock(Block block)
 		{
 			m_blockCount++;
+			_blockList.Add (block);
 		}	
 		public void onHitBlock()
 		{
@@ -216,29 +221,62 @@ namespace InaneGames {
 			}
 		}
 
-		public void removeBlock()
+		public void removeBlock(Block block)
+		{
+			if (_blockList.Contains (block)) {
+				if (block && block.getNomHits () <= 0)
+					_blockList.Remove (block);
+			}
+
+			//overGameDestroySpecific ();
+			overGameDestroyAllEnemy();
+		}
+
+		void overGameDestroySpecific()
 		{
 			m_blockCount=0;
-			Block[] blocks = (Block[])GameObject.FindObjectsOfType(typeof(Block));
-			for(int i=0; i<blocks.Length;i++)
+			foreach (var item in _blockList) 
 			{
-				if(blocks[i] && blocks[i].getNomHits()>0 && blocks[i].isPowerCore){
+				if(item && item.getNomHits()>0 && item.isPowerCore){
 					m_blockCount++;
 				}
 			}
+
 			if(m_blockCount==0)
 			{
 				createNextStack();
 			}	
 		}
+
+		void overGameDestroyAllEnemy()
+		{
+			if(_blockList.Count <= 0)
+			{
+				createNextStack();
+			}
+		}
+
 		void createNextStack()
 		{
 			if(m_stackIndex+1 <= stackArray.Length)
 			{
 
 				GameManager.newStack(m_stackIndex);
-				GameObject go = 
-					(GameObject)Instantiate(stackArray[m_stackIndex],ballStartPos,stackArray[m_stackIndex].transform.rotation	);
+				GameObject go;
+				var pref = stackArray [m_stackIndex];
+				if (!YourGlobalSettings.Instance.EditMapMode)
+				{
+					go = new GameObject("Stacks");
+					var tr = go.transform;
+					tr.position = ballStartPos;
+					tr.rotation = pref.transform.rotation;
+					go.AddComponent<ChapterDataReader> ();
+				} 
+				else
+				{
+					go = (GameObject)Instantiate(pref,ballStartPos,pref.transform.rotation);
+					go.AddComponent<ChapterDataSaver> ();
+				}
 				if(go)
 				{
 					go.gameObject.transform.parent = m_stackRotator.transform;

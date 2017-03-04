@@ -76,11 +76,9 @@ namespace InaneGames {
 
 			m_nomHits = nomHits;
 			m_gameScript = BrickoutGameScript.Instance;
-			if(m_gameScript && isPowerCore)
-			{
-				//infroms the gamescript that a block is created
-				m_gameScript.addBlock();
-			}
+
+			//infroms the gamescript that a block is created
+			m_gameScript.addBlock(this);
 		}
 		public void setInvincible(bool inv)
 		{
@@ -192,11 +190,10 @@ namespace InaneGames {
 				m_gameScript.addScore( bounty,false );
 
 				BaseGameManager.destroyBlock(this);
-				if(isPowerCore)
-				{
+
 					//inform the gamescript that the block has been removed
-					m_gameScript.removeBlock();
-				}	
+				m_gameScript.removeBlock(this);
+	
 				//set the block to destroyed
 				m_destroyed=true;
 				for(int i=0; i<transform.childCount; i++){
@@ -204,7 +201,8 @@ namespace InaneGames {
 				}
 			
 				//actually remove the gameObject
-				Destroy(gameObject);
+				//Destroy(gameObject);
+				PoolSpawner.Instance.Despawn(transform, 0f);
 			}
 		}
 		public float getNomHits()

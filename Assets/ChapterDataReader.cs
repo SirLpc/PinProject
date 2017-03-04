@@ -12,11 +12,7 @@ public class ChapterDataReader : MonoBehaviour
 
 	void Start()
 	{
-
-
 		cid = SceneManager.GetActiveScene().buildIndex;
-
-
 
 		Block[] bs = GetComponentsInChildren<Block> ();
 		foreach (var item in bs)
@@ -45,10 +41,16 @@ public class ChapterDataReader : MonoBehaviour
 		for (int i = 0; i < dd.EnemyLocPositin.Count; i++)
 		{
 			var tr = PoolSpawner.Instance.SpawnEnemy ((EnemyType)dd.EnemyType [i]);
+			//tr.GetComponent<Block>().
 			tr.SetParent (this.transform);
 			tr.localPosition = dd.EnemyLocPositin [i];
-			tr.localEulerAngles = new Vector3 (0f, 180f, 180f);
+			//tr.localEulerAngles = new Vector3 (0f, 180f, 180f);
+			var tar = transform.position;
+			tar.x += Random.Range (-70f, 70f);
+			tar.z += Random.Range (-70f, 70f);
+			tr.LookAt(tar);
 			tr.localScale = Vector3.one;
+			tr.Rotate (new Vector3(180f, 0f, 0f));
 			//tr.localEulerAngles = dd.EnemyLocRotationEuler [i];
 			//tr.localScale = dd.EnemyLocScale [i];
 			tr.name = "bbb" + i;

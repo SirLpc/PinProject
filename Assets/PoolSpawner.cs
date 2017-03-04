@@ -28,7 +28,19 @@ public class PoolSpawner : MonoBehaviour
 
 	public Transform SpawnEnemy(EnemyType type)
 	{
-		return spawnPool.Spawn ("Enemy_Normal");
+		switch (type) 
+		{
+		case EnemyType.NORMAL:
+			return spawnPool.Spawn ("Enemy_Normal");
+		case EnemyType.KNIFE:
+			return spawnPool.Spawn ("Enemy_Knife");
+		case EnemyType.BOOM:
+			return spawnPool.Spawn ("Enemy_Normal");
+			break;
+		default :
+			return spawnPool.Spawn ("Enemy_Normal");
+		}
+
 	}
 
 

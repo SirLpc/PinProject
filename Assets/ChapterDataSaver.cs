@@ -23,10 +23,6 @@ public class ChapterDataSaver : MonoBehaviour
 		{
 			SaveData ();
 		}
-		if (GUILayout.Button ("Read Data"))
-		{
-			ReadData ();
-		}
 	}
 
 	private void SaveData()
@@ -50,7 +46,6 @@ public class ChapterDataSaver : MonoBehaviour
 
 		Debug.Log ("save success" + cpath);
 		ES2.Save (cm, cpath);
-
 	}
 
 	private void ReadData()

@@ -73,6 +73,9 @@ namespace InaneGames {
 				m_body.velocity = Vector3.zero;
 				m_body.angularVelocity = rotationSpeed;
 			}
+
+			if (YourGlobalSettings.Instance.EditMapMode)
+				gameObject.SetActive(false);
 		}
 		public void fire()
 		{

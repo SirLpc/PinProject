@@ -4,8 +4,9 @@ using UnityEngine;
 
 [ExecuteInEditMode]
 [AddComponentMenu("Image Effects/Edge Detection (Color)")]
-public class EdgeDetectEffect : ImageEffectBase
+public class EdgeDetectEffect /*: ImageEffectBase*/
 {
+	/*
 	public float threshold = 0.2F;
 	
 	// Called by camera to apply image effect
@@ -13,5 +14,5 @@ public class EdgeDetectEffect : ImageEffectBase
 	{
 		material.SetFloat ("_Treshold", threshold * threshold);
 		Graphics.Blit (source, destination, material);
-	}
+	}*/
 }
